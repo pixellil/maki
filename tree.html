@@ -12,22 +12,29 @@
 
     <script type="text/javascript">
       $(function() {
-        $('.tree').draggable({containment: "parent"});
+        $('.tree').draggable({containment: "body"});
       });
     </script>
 
     <script>
       $(document).ready(function(){
 
-        // $(document).mousemove(function(event){
-      	// 	var x = event.pageX;
-      	// 	var y = event.pageY;
-      	// 	console.log( 'Координаты курсора: (' + x + '; ' + y + ')' );
-      	// });
+        $(document).mousemove(function(event){
+      		var x = event.pageX;
+      		var y = event.pageY;
+      		console.log( 'Координаты курсора: (' + x + '; ' + y + ')' );
+      	});
 
         $(".buttonclone").click(function(a){
 
-          $(a.currentTarget).find('img').clone().addClass('ready-to-drop new-ball').appendTo("#area").draggable({containment: "parent"});
+          $(a.currentTarget).find('img').clone()
+          .addClass('ready-to-drop new-ball')
+          .appendTo("#area")
+          .draggable({containment: "parent"})
+          .css({"position": "absolute",
+              "top": Math.floor(Math.random() * 600),
+              "left": Math.floor(Math.random() * 1200)});
+
           $('#tree').droppable({
             drop: function(a) {
                 if (!$(a.toElement).hasClass('ready-to-drop')) {
@@ -60,16 +67,24 @@
 
           console.log('arrayToys = ', arrayToys);
 
-          var arrayCoord = [[730,285],[690,285],[650,285],[670,330],[690,375],[670,420],[650,465],[690,465],[730,465],[730,285]];
+          var arrayCoord = [[620,300],[580,300],[540,300],[500,300],[540,345],[580,390],[540,435],[500,480],[540,480],[580,480],[620,480],
+            //A
+            [620,550],[570,573],[535,604],[500,640],[535,676],[570,707],[620,730],[570,622],[570,658],
+            //к
+            [620,800],[580,800],[540,800],[500,800],[560,840],[530,880],[500,920],[590,880],[620,920]
+
+          ];
 
           console.warn('arrayToys[0].length = ', arrayToys[0].length);
 
-          let i = 0;
+          let i = -1;
           while(i != arrayToys[0].length) {
             $(arrayToys[0][i+1]).css({
               'position': 'absolute',
-              "top": arrayCoord[i+1][0],
-              "left": arrayCoord[i+1][1]
+              'width': '40px',
+              'height': 'auto',
+              'top': arrayCoord[i+1][0],
+              'left': arrayCoord[i+1][1]
             });
             i++;
           }
