@@ -297,6 +297,22 @@ nav.stroke ul li a:hover:after {
   font-weight: bold;
 }
 
+.contain-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.contain-text {
+  color: white;
+  font-size: 17px;
+  font-family: Courier New;
+}
+
+.contain-content-inmain {
+  padding: 20px;
+  text-align: center;
+}
+
 .third {
   display: flex;
   flex-direction: column;
